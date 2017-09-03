@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <getopt.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -57,14 +58,15 @@ const struct option opts1[] = {
 
 int main(int argc, char *argv[]){
     if(argc < 3){
-        help(); 
+        help();
+        exit(1);
     }
-
+    
     int c;
     struct sockaddr_in vit;
     struct pool p;
 
-
+    memset(&p, 0, sizeof(p));
     while((c = getopt_long(argc, argv, opts, opts1, &optind)) != -1){
     
         switch(c){
