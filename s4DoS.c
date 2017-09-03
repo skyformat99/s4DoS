@@ -58,7 +58,7 @@ int main(int argc, char *argv[]){
         }
     
         if(p.conecta == 0){
-            printf("Packet -> %d\n", p.inicio);
+            printf("Packet -> %d - Bytes - %zu\n", p.inicio, sizeof(p.inicio));
         }
     }
 }
