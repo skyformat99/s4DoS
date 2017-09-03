@@ -1,12 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <netdb.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
 
-void help(){
-
-    fprintf(stderr, "Uso: ./s4DoS <host> <port> <number packet injection>\n");
-    fprintf(stderr, "Example: ./s4DoS 1270.0.0.1 80 1000\n");
-
+void banner(){
+	puts(" _____         _____   ");
+	puts("|  __ \\      / ____|  ");
+	puts("| |  | | ___| (___     ");
+	puts("| |  | |/ _ \\___ \\   ");
+	puts("| |__| | (_) |___) |   ");
+	puts("|_____/ \\___/_____/   ");
+	                     
+    printf("\n");                 
+	puts("[+]Author: Lexroot");
+	puts("[+]github: github/Lexroot");
 }
 
 void fatal(char *msg){
@@ -25,8 +33,9 @@ struct pool{
 
 int main(int argc, char *argv[]){
     if(argc < 3){
-        help();
-        fatal("Numero de argumentos invalidos");
+        banner();
+        printf("\n");
+        fatal("Example: ./s4DoS 1270.0.0.1 80 1000");
     }
 
     struct sockaddr_in vit;
