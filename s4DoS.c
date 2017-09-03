@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
     
     p.host   = argv[1];
     p.port   = atoi(argv[2]);
-    p.fim  	 = atoi(argv[3]);
+    p.fim    = atoi(argv[3]);
 
     for(p.inicio = 0; p.inicio < p.fim; p.inicio++){ 
 
