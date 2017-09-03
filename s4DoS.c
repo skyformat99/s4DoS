@@ -5,16 +5,16 @@
 #include <arpa/inet.h>
 
 void banner(){
-	puts(" _____         _____   ");
-	puts("|  __ \\      / ____|  ");
-	puts("| |  | | ___| (___     ");
-	puts("| |  | |/ _ \\___ \\   ");
-	puts("| |__| | (_) |___) |   ");
-	puts("|_____/ \\___/_____/   ");
+    puts(" _____         _____   ");
+    puts("|  __ \\      / ____|  ");
+    puts("| |  | | ___| (___     ");
+    puts("| |  | |/ _ \\___ \\   ");
+    puts("| |__| | (_) |___) |   ");
+    puts("|_____/ \\___/_____/   ");
 	                     
     printf("\n");                 
-	puts("[+]Author: Lexroot");
-	puts("[+]github: github/Lexroot");
+    puts("[+]Author: Lexroot");
+    puts("[+]github: github/Lexroot");
 }
 
 void fatal(char *msg){
